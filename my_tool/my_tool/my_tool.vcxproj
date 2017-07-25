@@ -51,13 +51,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\boost_1_60_0;./classes;./classes/application;./classes/common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\boost_1_60_0;./classes;./classes/application;./classes/common;./classes/tests;./classes/tests/Boost;./classes/tests/C11;./classes/tests/Other;./classes/tests/dataStructure;./classes/tests/DesignPattern</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\boost_1_60_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -86,12 +87,115 @@
     <ClInclude Include="classes\application\AppDelegate.h" />
     <ClInclude Include="classes\common\Any.h" />
     <ClInclude Include="classes\common\common.h" />
+    <ClInclude Include="classes\common\commontools.h" />
+    <ClInclude Include="classes\common\Sigleton.h" />
+    <ClInclude Include="classes\tests\Boost\BoostManager.h" />
+    <ClInclude Include="classes\tests\Boost\TestDatetime.h" />
+    <ClInclude Include="classes\tests\Boost\TestProgress.h" />
+    <ClInclude Include="classes\tests\Boost\TestTemplate.h" />
+    <ClInclude Include="classes\tests\Boost\TestTimer.h" />
+    <ClInclude Include="classes\tests\C11\C11Manager.h" />
+    <ClInclude Include="classes\tests\C11\TestC11.h" />
+    <ClInclude Include="classes\tests\C11\TestFunction.h" />
+    <ClInclude Include="classes\tests\dataStructure\BaseTree.h" />
+    <ClInclude Include="classes\tests\dataStructure\DataStructureManager.h" />
+    <ClInclude Include="classes\tests\dataStructure\MyList.h" />
+    <ClInclude Include="classes\tests\dataStructure\Review.h" />
+    <ClInclude Include="classes\tests\dataStructure\Tree.h" />
+    <ClInclude Include="classes\tests\DesignPattern\AbstractFactoryTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Adapter.h" />
+    <ClInclude Include="classes\tests\DesignPattern\AdapterTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\BlackHuman.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Bridge.h" />
+    <ClInclude Include="classes\tests\DesignPattern\BridgeTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Builder.h" />
+    <ClInclude Include="classes\tests\DesignPattern\BuilderTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Command.h" />
+    <ClInclude Include="classes\tests\DesignPattern\CommandTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Composite.h" />
+    <ClInclude Include="classes\tests\DesignPattern\CompositeTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\DatabaseFactory.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Decorator.h" />
+    <ClInclude Include="classes\tests\DesignPattern\DecoratorTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Delegate.h" />
+    <ClInclude Include="classes\tests\DesignPattern\DelegateTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Department.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Facade.h" />
+    <ClInclude Include="classes\tests\DesignPattern\FacadeTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\FactoryTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Flyweight.h" />
+    <ClInclude Include="classes\tests\DesignPattern\FlyweightTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\HumanFactory.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IDatabaseFactory.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IDepartment.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IHuman.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IHumanFactory.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Iterator.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IteratorTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\IUser.h" />
+    <ClInclude Include="classes\tests\DesignPattern\DesignPatternManager.h" />
+    <ClInclude Include="classes\tests\DesignPattern\md5\md5.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Mediator.h" />
+    <ClInclude Include="classes\tests\DesignPattern\MediatorTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Memento.h" />
+    <ClInclude Include="classes\tests\DesignPattern\MementoEx.h" />
+    <ClInclude Include="classes\tests\DesignPattern\MementoTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Observer.h" />
+    <ClInclude Include="classes\tests\DesignPattern\ObserverTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Prototype.h" />
+    <ClInclude Include="classes\tests\DesignPattern\PrototypeTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Responsibility.h" />
+    <ClInclude Include="classes\tests\DesignPattern\ResponsibilityTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\SimpleIterator.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Singleton.h" />
+    <ClInclude Include="classes\tests\DesignPattern\State.h" />
+    <ClInclude Include="classes\tests\DesignPattern\StateTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Strategy.h" />
+    <ClInclude Include="classes\tests\DesignPattern\StrategyTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Template.h" />
+    <ClInclude Include="classes\tests\DesignPattern\TemplateTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\User.h" />
+    <ClInclude Include="classes\tests\DesignPattern\Visitor.h" />
+    <ClInclude Include="classes\tests\DesignPattern\VisitorTest.h" />
+    <ClInclude Include="classes\tests\DesignPattern\WhiteHuman.h" />
+    <ClInclude Include="classes\tests\DesignPattern\YellowHuman.h" />
+    <ClInclude Include="classes\tests\IManager.h" />
+    <ClInclude Include="classes\tests\Itest.h" />
+    <ClInclude Include="classes\tests\Other\OtherManager.h" />
+    <ClInclude Include="classes\tests\Other\TestHuaWeiSwap.h" />
+    <ClInclude Include="classes\tests\TestManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="classes\application\Application.cpp" />
     <ClCompile Include="classes\application\AppDelegate.cpp" />
+    <ClCompile Include="classes\tests\Boost\BoostManager.cpp" />
+    <ClCompile Include="classes\tests\Boost\TestTemplate.cpp" />
+    <ClCompile Include="classes\tests\Boost\TestTimer.cpp" />
+    <ClCompile Include="classes\tests\C11\C11Manager.cpp" />
+    <ClCompile Include="classes\tests\C11\TestC11.cpp" />
+    <ClCompile Include="classes\tests\C11\TestFunction.cpp" />
+    <ClCompile Include="classes\tests\dataStructure\DataStructureManager.cpp" />
+    <ClCompile Include="classes\tests\dataStructure\MyList.cpp" />
+    <ClCompile Include="classes\tests\dataStructure\Review.cpp" />
+    <ClCompile Include="classes\tests\dataStructure\Tree.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\BlackHuman.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\Command.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\Composite.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\HumanFactory.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\DesignPatternManager.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\md5\md5.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\Mediator.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\MementoEx.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\State.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\Visitor.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\WhiteHuman.cpp" />
+    <ClCompile Include="classes\tests\DesignPattern\YellowHuman.cpp" />
+    <ClCompile Include="classes\tests\IManager.cpp" />
+    <ClCompile Include="classes\tests\Other\OtherManager.cpp" />
+    <ClCompile Include="classes\tests\Other\TestHuaWeiSwap.cpp" />
+    <ClCompile Include="classes\tests\TestManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>

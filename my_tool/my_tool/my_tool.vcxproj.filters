@@ -13,6 +13,27 @@
     <Filter Include="classes\common">
       <UniqueIdentifier>{5d9b266e-03ec-45d0-8608-1d73793bc89c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\tests">
+      <UniqueIdentifier>{700d55d7-f265-434c-ab4a-d4998e873b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\Boost">
+      <UniqueIdentifier>{b60934c6-9312-4606-9b00-876f5781faee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\C11">
+      <UniqueIdentifier>{36eafd43-e3f0-4779-90aa-bb77edd89487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\Other">
+      <UniqueIdentifier>{9b591a92-1f29-4fea-b097-54b24afc3653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\dataStructure">
+      <UniqueIdentifier>{70c27225-2407-47b3-9c77-da08a2a06806}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\DesignPattern">
+      <UniqueIdentifier>{210367be-64eb-4638-87a4-79e93027d18b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\tests\DesignPattern\md5">
+      <UniqueIdentifier>{e2a58963-79d0-4611-9f13-523a53cc38a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,6 +57,237 @@
     <ClInclude Include="classes\common\Any.h">
       <Filter>classes\common</Filter>
     </ClInclude>
+    <ClInclude Include="classes\tests\Itest.h">
+      <Filter>classes\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Boost\BoostManager.h">
+      <Filter>classes\tests\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\TestManager.h">
+      <Filter>classes\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\IManager.h">
+      <Filter>classes\tests</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\common\Sigleton.h">
+      <Filter>classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\common\commontools.h">
+      <Filter>classes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Boost\TestDatetime.h">
+      <Filter>classes\tests\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Boost\TestProgress.h">
+      <Filter>classes\tests\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Boost\TestTemplate.h">
+      <Filter>classes\tests\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Boost\TestTimer.h">
+      <Filter>classes\tests\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\C11\C11Manager.h">
+      <Filter>classes\tests\C11</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Other\OtherManager.h">
+      <Filter>classes\tests\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\C11\TestC11.h">
+      <Filter>classes\tests\C11</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\C11\TestFunction.h">
+      <Filter>classes\tests\C11</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\dataStructure\DataStructureManager.h">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\dataStructure\BaseTree.h">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\dataStructure\MyList.h">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\dataStructure\Review.h">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\dataStructure\Tree.h">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\AbstractFactoryTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Adapter.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\AdapterTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\BlackHuman.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Bridge.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\BridgeTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Builder.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\BuilderTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Command.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\CommandTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Composite.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\CompositeTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\DatabaseFactory.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Decorator.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\DecoratorTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Delegate.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\DelegateTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Department.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Facade.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\FacadeTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\FactoryTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Flyweight.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\FlyweightTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\HumanFactory.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IDatabaseFactory.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IDepartment.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IHuman.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IHumanFactory.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Iterator.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IteratorTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\IUser.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Mediator.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\MediatorTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Memento.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\MementoEx.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\MementoTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Observer.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\ObserverTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Prototype.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\PrototypeTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Responsibility.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\ResponsibilityTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\SimpleIterator.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Singleton.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\State.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\StateTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Strategy.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\StrategyTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Template.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\TemplateTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\User.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\Visitor.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\VisitorTest.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\WhiteHuman.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\YellowHuman.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\DesignPatternManager.h">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\DesignPattern\md5\md5.h">
+      <Filter>classes\tests\DesignPattern\md5</Filter>
+    </ClInclude>
+    <ClInclude Include="classes\tests\Other\TestHuaWeiSwap.h">
+      <Filter>classes\tests\Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -49,6 +301,84 @@
     </ClCompile>
     <ClCompile Include="classes\application\Application.cpp">
       <Filter>classes\application</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\Boost\BoostManager.cpp">
+      <Filter>classes\tests\Boost</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\TestManager.cpp">
+      <Filter>classes\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\Boost\TestTemplate.cpp">
+      <Filter>classes\tests\Boost</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\Boost\TestTimer.cpp">
+      <Filter>classes\tests\Boost</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\IManager.cpp">
+      <Filter>classes\tests</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\C11\C11Manager.cpp">
+      <Filter>classes\tests\C11</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\Other\OtherManager.cpp">
+      <Filter>classes\tests\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\C11\TestC11.cpp">
+      <Filter>classes\tests\C11</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\C11\TestFunction.cpp">
+      <Filter>classes\tests\C11</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\dataStructure\DataStructureManager.cpp">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\dataStructure\MyList.cpp">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\dataStructure\Review.cpp">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\dataStructure\Tree.cpp">
+      <Filter>classes\tests\dataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\BlackHuman.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\Command.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\Composite.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\HumanFactory.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\Mediator.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\MementoEx.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\State.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\Visitor.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\WhiteHuman.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\YellowHuman.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\DesignPatternManager.cpp">
+      <Filter>classes\tests\DesignPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\DesignPattern\md5\md5.cpp">
+      <Filter>classes\tests\DesignPattern\md5</Filter>
+    </ClCompile>
+    <ClCompile Include="classes\tests\Other\TestHuaWeiSwap.cpp">
+      <Filter>classes\tests\Other</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
