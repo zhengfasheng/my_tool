@@ -16,7 +16,7 @@
  *
  *  Date:2016/9/4 20:55
  *
- *  Summary:Declares any class Derived from the boost library
+ *  Summary:Declares any class from the boost library
  *  
  ******************************************************************************/
 #pragma once
@@ -24,10 +24,12 @@
 #include <typeinfo>
 #include <type_traits>
 #include <typeindex>
-namespace boost{
+
+
+namespace detail{
 	template <bool B, class T = void>
 	struct disable_if_c {
-	typedef T type;
+		typedef T type;
 	};
 
 	template <class T>
@@ -36,253 +38,289 @@ namespace boost{
 	template <class Cond, class T = void>
 	struct disable_if : public disable_if_c<Cond::value, T> {};
 
-	namespace detail
-	{
-		template <class T> struct remove_bounds : public remove_extent<T> {};
-		template <class T, bool Array, bool Function> struct decay_imp { typedef typename remove_cv<T>::type type; };
-		template <class T> struct decay_imp<T, true, false> { typedef typename remove_bounds<T>::type* type; };
-		template <class T> struct decay_imp<T, false, true> { typedef T* type; };
-
-		//remove const
-		//template <class T, bool isConst > struct remove_const { typedef typename T type; };
-		//template <class T > struct remove_const<T , true > { typedef typename std::remove_const<T>::type type; };
-		//template <class T > struct remove_const<T, false> { typedef typename T type; };
-		//remove reference
-		//template <class T, bool isReference > struct remove_reference { typedef typename T type; };
-		//template <class T > struct remove_reference<T, true > { typedef typename std::remove_reference<T>::type type; };
-		//template <class T > struct remove_reference<T, false> { typedef typename T type; };
-	}
-
-	template< class T >
-	struct decay
-	{
-	private:
-		typedef typename std::remove_reference<T>::type Ty;
-	public:
-		typedef typename boost::detail::decay_imp<Ty, std::is_array<Ty>::value, std::is_function<Ty>::value>::type type;
+	template<bool,class _Ty1,class _Ty2>
+	struct _If
+	{	// type is _Ty2 for assumed false
+		typedef _Ty2 type;
 	};
 
-	class any
-	{
+	template<class _Ty1,class _Ty2>
+	struct _If<true, _Ty1, _Ty2>
+	{	// type is _Ty1 for assumed true
+		typedef _Ty1 type;
+	};
+
+	template<class _Ty>
+	struct add_reference
+	{	// add reference
+		typedef typename remove_reference<_Ty>::type& type;
+	};
+
+	template<>
+	struct add_reference<void>
+	{	// add reference
+		typedef void type;
+	};
+
+	template<>
+	struct add_reference<const void>
+	{	// add reference
+		typedef const void type;
+	};
+
+	template<>
+	struct add_reference<volatile void>
+	{	// add reference
+		typedef volatile void type;
+	};
+
+	template<>
+	struct add_reference<const volatile void>
+	{	// add reference
+		typedef const volatile void type;
+	};
+
+	class bad_cast{
 
 	public:
-
-		any()
-			: content(0)
-		{
+		explicit bad_cast(const std::string& msg ){
+			_what = msg;
 		}
-
-		template<typename value_type>
-		any(const value_type & value)
-			: content(new holder<std::remove_cv<boost::decay<const value_type>::type>::type>(value))
-		{
-		}
-
-		any(const any & other)
-			: content(other.content ? other.content->clone() : 0)
-		{
-		}
-
-		//c++11
-		// Move constructor
-		any(any&& other)
-			: content(other.content)
-		{
-			other.content = 0;
-		}
-
-		// Perfect forwarding of ValueType
-		template<typename value_type>
-		any(value_type&& value
-			, typename disable_if<std::is_same<any&, value_type> >::type* = 0 // disable if value has type `any&`
-			, typename disable_if<std::is_const<value_type> >::type* = 0) // disable if value has type `const ValueType&&`
-			: content(new holder< typename boost::decay<value_type>::type >(static_cast<value_type&&>(value)))
-		{
-		}
-
-		~any()
-		{
-			if (content)
-			{
-				delete content;
-			}
-			content = nullptr;
-		}
-
-	public:
-
-		any& swap(any& rhs)
-		{
-			std::swap(content, rhs.content);
-			return *this;
-		}
-
-		any& operator=(const any& rhs)
-		{
-			any(rhs).swap(*this);
-			return *this;
-		}
-
-		//c++11
-		//move assignement
-		any& operator=(any&& rhs)
-		{
-			rhs.swap(*this);
-			any().swap(rhs);
-			return *this;
-		}
-
-		//perfect forwarding of valueType
-		template<class valueType>
-		any& operator=(valueType&& rhs)
-		{
-			any(static_cast<valueType&&>(rhs)).swap(*this);
-			return *this;
-		}
-
-	public: // queries
-
-		bool empty()
-		{
-			return !content;
-		}
-
-		void clear()
-		{
-			any().swap(*this);
-		}
-
-		const std::type_info& type() const
-		{
-			return content ? content->type() : typeid(void);
-		}
-
-	private:
-
-		class placeholder
-		{
-		public:
-			virtual ~placeholder(){}
-			virtual const std::type_info& type() const = 0;
-			virtual placeholder* clone() const = 0;
+		const char* what() const{
+			return _what.data();
 		};
 
-		template<typename value_type>
-		class holder : public placeholder
+	private: 
+		std::string _what;
+	};
+}
+
+class Any
+{
+
+public:
+
+	Any()
+		: content(0)
+	{
+	}
+
+	template<typename _Ty>
+	Any(const _Ty & value)
+		: content(new holder<typename std::remove_cv< typename std::decay<const _Ty>::type>::type>(value))
+	{
+	}
+
+	Any(const Any & other)
+		: content(other.content ? other.content->clone() : 0)
+	{
+	}
+
+	//c++11
+	// Move constructor
+	Any(Any&& other)
+		: content(other.content)
+	{
+		other.content = 0;
+	}
+
+	// Perfect forwarding of ValueType
+	template<typename _Ty>
+	Any(_Ty&& value
+		, typename detail::disable_if< typename std::is_same<Any&, _Ty> >::type* = 0 // disable if value has type `any&`
+		, typename detail::disable_if< typename std::is_const<_Ty> >::type* = 0) // disable if value has type `const ValueType&&`
+		: content(new holder< typename std::decay<_Ty>::type >(static_cast<_Ty&&>(value)))
+	{
+	}
+
+	~Any()
+	{
+		if (content)
 		{
-		public:
-			typedef value_type value_type;
-			holder(const value_type& value) :held(value){}
-			holder(value_type&& value)
-				:held(static_cast<value_type&&>(value))
-			{
+			delete content;
+		}
+		content = nullptr;
+	}
+
+public:
+
+	Any& swap(Any& rhs)
+	{
+		std::swap(content, rhs.content);
+		return *this;
+	}
+
+	Any& operator=(const Any& rhs)
+	{
+		Any(rhs).swap(*this);
+		return *this;
+	}
+
+	//c++11
+	//move assignement
+	Any& operator=(Any&& rhs)
+	{
+		rhs.swap(*this);
+		Any().swap(rhs);
+		return *this;
+	}
+
+	//perfect forwarding of valueType
+	template<class valueType>
+	Any& operator=(valueType&& rhs)
+	{
+		Any(static_cast<valueType&&>(rhs)).swap(*this);
+		return *this;
+	}
+
+public: // queries
+
+	bool empty()
+	{
+		return !content;
+	}
+
+	void clear()
+	{
+		Any().swap(*this);
+	}
+
+	const std::type_info& type() const
+	{
+		return content ? content->type() : typeid(void);
+	}
+
+private:
+
+	class placeholder
+	{
+	public:
+		virtual ~placeholder(){}
+		virtual const std::type_info& type() const = 0;
+		virtual placeholder* clone() const = 0;
+	};
+
+	template<typename _Ty>
+	class holder : public placeholder
+	{
+	public:
+		typedef _Ty value_type;
+		holder(const _Ty& value) :held(value){}
+		holder(_Ty&& value)
+			:held(static_cast<_Ty&&>(value))
+		{
 				
-			}
+		}
 
-			virtual const std::type_info& type() const
-			{
-				return typeid(value_type);
-			}
+		virtual const std::type_info& type() const
+		{
+			return typeid(value_type);
+		}
 
-			virtual placeholder* clone() const
-			{
-				return new holder(held);
-			}
+		virtual placeholder* clone() const
+		{
+			return new holder(held);
+		}
 
-		public:
-			value_type held;
-
-		private:
-			// intentionally left unimplemented
-			holder& operator=(const holder &);
-		};
-
-	private: // representation
-
-		template<typename value_type>
-		friend value_type * any_cast(any *);
-
-		template<typename value_type>
-		friend value_type * unsafe_any_cast(any *);
+	public:
+		_Ty held;
 
 	private:
-
-		placeholder* content;
+		// intentionally left unimplemented
+		holder& operator=(const holder &);
 	};
 
-	inline void swap(any & lhs, any & rhs)
+private: // representation
+
+	template<typename _Ty>
+	friend _Ty * any_cast(Any *);
+
+	template<typename _Ty>
+	friend _Ty * unsafe_any_cast(Any *);
+
+private:
+
+	placeholder* content;
+};
+
+inline void swap(Any & lhs, Any & rhs)
+{
+	lhs.swap(rhs);
+}
+
+template<typename _Ty>
+_Ty * any_cast(Any * operand)
+{
+	return operand && operand->type() == typeid(_Ty)
+	? &static_cast<Any::holder< typename std::remove_cv<_Ty>::type> *>(operand->content)->held
+	: 0;
+}
+
+template<typename _Ty>
+inline const _Ty * any_cast(const Any * operand)
+{
+	return any_cast<_Ty>(const_cast<Any *>(operand));
+}
+
+template<typename _Ty>
+_Ty any_cast(Any & operand)
+{
+	typedef typename std::remove_reference<_Ty>::type nonref;
+
+	nonref * result = any_cast<nonref>(&operand);
+	if (!result)
 	{
-		lhs.swap(rhs);
+		std::string szReason = "bad any_cast : can't convert ";
+		szReason += operand.type().name();
+		szReason += " to ";
+		szReason += typeid(_Ty).name();
+		throw detail::bad_cast(szReason);
 	}
 
-	template<typename value_type>
-	value_type * any_cast(any * operand)
-	{
-		return operand && operand->type() == typeid(value_type)
-		? &static_cast<any::holder<std::remove_cv<value_type>::type> *>(operand->content)->held
-		: 0;
-	}
+	// Attempt to avoid construction of a temporary object in cases when 
+	// `ValueType` is not a reference. Example:
+	// `static_cast<std::string>(*result);` 
+	// which is equal to `std::string(*result);`
+	typedef typename detail::_If<
+		std::is_reference<_Ty>::value,
+		_Ty,
+		typename detail::add_reference<_Ty>::type
+		>::type ref_type;
 
-	template<typename value_type>
-	inline const value_type * any_cast(const any * operand)
-	{
-		return any_cast<value_type>(const_cast<any *>(operand));
-	}
+		return static_cast<ref_type>(*result);
+}
 
-	template<typename value_type>
-	value_type any_cast(any & operand)
-	{
-		typedef std::remove_reference<value_type>::type nonref;
+template<typename _Ty>
+inline _Ty any_cast(const Any & operand)
+{
+	typedef typename std::remove_reference<_Ty>::type nonref;
+	return any_cast<const nonref &>(const_cast<Any &>(operand));
+}
 
-		nonref * result = any_cast<nonref>(&operand);
-		if (!result)
-			throw std::bad_cast("boost::bad_any_cast: failed conversion using boost::any_cast");
+template<typename _Ty>
+inline _Ty any_cast(Any&& operand)
+{
+	static_assert(
+		std::is_rvalue_reference<_Ty&&>::value /*true if ValueType is rvalue or just a value*/
+		|| std::is_const< typename std::remove_reference<_Ty>::type >::value,
+		"any_cast shall not be used for getting nonconst references to temporary objects"
+		);
+	return any_cast<_Ty>(operand);
+}
 
-		// Attempt to avoid construction of a temporary object in cases when 
-		// `ValueType` is not a reference. Example:
-		// `static_cast<std::string>(*result);` 
-		// which is equal to `std::string(*result);`
-		typedef typename std::_If<
-			std::is_reference<value_type>::value,
-			value_type,
-			std::add_reference<value_type>::type
-			>::type ref_type;
+// Note: The "unsafe" versions of any_cast are not part of the
+// public interface and may be removed at any time. They are
+// required where we know what type is stored in the any and can't
+// use typeid() comparison, e.g., when our types may travel across
+// different shared libraries.
+template<typename _Ty>
+inline _Ty * unsafe_any_cast(Any * operand)
+{
+	return &static_cast<Any::holder<_Ty> *>(operand->content)->held;
+}
 
-			return static_cast<ref_type>(*result);
-	}
-
-	template<typename value_type>
-	inline value_type any_cast(const any & operand)
-	{
-		typedef typename std::remove_reference<value_type>::type nonref;
-		return any_cast<const nonref &>(const_cast<any &>(operand));
-	}
-
-	template<typename value_type>
-	inline value_type any_cast(any&& operand)
-	{
-		static_assert(
-			std::is_rvalue_reference<value_type&&>::value /*true if ValueType is rvalue or just a value*/
-			|| std::is_const< typename std::remove_reference<value_type>::type >::value,
-			"boost::any_cast shall not be used for getting nonconst references to temporary objects"
-			);
-		return any_cast<value_type>(operand);
-	}
-
-	// Note: The "unsafe" versions of any_cast are not part of the
-	// public interface and may be removed at any time. They are
-	// required where we know what type is stored in the any and can't
-	// use typeid() comparison, e.g., when our types may travel across
-	// different shared libraries.
-	template<typename value_type>
-	inline value_type * unsafe_any_cast(any * operand)
-	{
-		return &static_cast<any::holder<value_type> *>(operand->content)->held;
-	}
-
-	template<typename value_type>
-	inline const value_type * unsafe_any_cast(const any * operand)
-	{
-		return unsafe_any_cast<value_type>(const_cast<any *>(operand));
-	}
+template<typename _Ty>
+inline const _Ty * unsafe_any_cast(const Any * operand)
+{
+	return unsafe_any_cast<_Ty>(const_cast<Any *>(operand));
 }
